@@ -10,7 +10,7 @@ export class User extends Rootentity {
   @Column()
   lastname: string;
 
-  @Column({ unique: true })
+  @Column()
   email: string;
 
   @Column({ enum: UserRole, type: 'enum', default: UserRole.user })

@@ -9,5 +9,7 @@ export const env = cleanEnv(process.env,{
     DB_USER:str(),
     DB_PASS:str(),
     DB_PORT:num(),
-    PASS_HASH_SECRET:str()
+    PASS_HASH_SECRET:str(),
+    REFRESH_TOKEN_SECRET:str(),
+    ACCES_TOKEN_SECRET:str()
 })
