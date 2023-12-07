@@ -18,6 +18,9 @@ export class Book extends Rootentity{
     @Column()
     booklanguage:string
 
+    @Column({nullable:true})
+    money:string
+
     @ManyToMany(() => Category, (category) => category.book)
     category:Category[]
 }
