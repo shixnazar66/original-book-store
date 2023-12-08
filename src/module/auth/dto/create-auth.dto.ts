@@ -28,4 +28,8 @@ export class CreateAuthDto {
     @IsString()
     @IsOptional()
     role:string
+
+
+    @IsOptional()
+    telegramID:string
 }

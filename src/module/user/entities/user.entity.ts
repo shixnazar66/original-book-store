@@ -19,6 +19,9 @@ export class User extends Rootentity {
   @Column()
   password: string;
 
+  @Column()
+  telegramID:string
+
   @Column({ nullable: true })
   refresh_token: string;
 }

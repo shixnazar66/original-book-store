@@ -8,6 +8,7 @@ import { Category } from '../category/entities/category.entity';
 import { findAllBookDto } from './dto/findAll-book.dto';
 import { Pagination } from 'src/common/utils/pagination';
 import { ApiResponse } from 'src/common/http/apiresponse';
+import { findBookDto } from './dto/find-book.dto';
 
 @Injectable()
 export class BookService {
@@ -101,4 +102,21 @@ constructor(
       throw error
     }
   }
+
+ 
+  async find(findBookDto:findBookDto){
+    try {
+      const {bookname} = findBookDto
+      const find = await this.bookRepo.findOneBy({bookname:bookname})
+      const id = find.id
+      if(!find){
+        throw new BadRequestException('kitob topilmadi')
+      }
+      this.bookRepo.update({id},{viewcount:find.viewcount+1})
+      return find
+    } catch (error) {
+      throw error
+    }
+  }
+
 }

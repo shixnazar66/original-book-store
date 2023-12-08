@@ -87,4 +87,18 @@ async login(CreateAuthDto: CreateAuthDto) {
         throw error
       }
   }
+
+
+  async findtelegramID(id:string){
+    try {
+      const find =await this.UserRepo.findOneBy({telegramID:id})
+      if(!find){
+        throw new BadRequestException('registratsiya qilinmagan')
+      }
+      return find
+    } catch (error) {
+      throw error
+    }
+  }
+
 }

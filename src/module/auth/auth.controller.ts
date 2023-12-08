@@ -4,6 +4,7 @@ import { CreateAuthDto } from './dto/create-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from 'src/common/guards/auth-guard';
+import { get } from 'http';
 
 
 @ApiTags()
@@ -31,5 +32,11 @@ export class AuthController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.authService.remove(+id);
+  }
+
+
+  @Get('telegram/:id')
+  findtelegramID(@Param('id')id:string){
+    return this.authService.findtelegramID(id)
   }
 }

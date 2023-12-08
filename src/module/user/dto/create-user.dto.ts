@@ -32,4 +32,8 @@ export class CreateUserDto {
     @ApiProperty()
     @IsStrongPassword()
     password: string;
+
+
+    @IsOptional()
+    telegramID:string
 }
