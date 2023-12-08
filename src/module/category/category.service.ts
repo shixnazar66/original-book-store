@@ -36,6 +36,8 @@ export class CategoryService {
       const users = await this.categoryRepo.find({
         take: pagination.limit,
         skip: pagination.offset,
+        relations: ['book'],
+        loadRelationIds: true,
       });
       return new ApiResponse(users,pagination)
     } catch (error) {
@@ -80,4 +82,36 @@ export class CategoryService {
     throw error
    }
   }
+
+
+  async findcategory(){
+    try {
+    const find = await this.categoryRepo.find()
+    return find
+    } catch (error) {
+      throw error
+    }
+  }
+
+
+
+async findcat(createCategoryDto:CreateCategoryDto){
+  try {
+  const {categoryname} = createCategoryDto
+  const find = await this.categoryRepo.findOne({where:{categoryname},relations:["book"]})
+  return find
+  } catch (error) {
+    throw error
+  }
 }
+
+
+
+}
+
+
+// const category = await this.categoryRepo
+//       .createQueryBuilder('category')
+//       .leftJoinAndSelect('category.book', 'book')
+//       .where('category.id = :id', { id })
+//       .getOne();

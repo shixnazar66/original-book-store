@@ -52,6 +52,8 @@ constructor(
       const users = await this.bookRepo.find({
         take: pagination.limit,
         skip: pagination.offset,
+        relations: ['category'],
+        loadRelationIds: true
       });
       return new ApiResponse(users,pagination)
     } catch (error) {

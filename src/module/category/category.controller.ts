@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Put } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
@@ -13,6 +13,19 @@ export class CategoryController {
   create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.categoryService.create(createCategoryDto);
   }
+
+
+  @Get('findcategory')
+  findcategory(){
+   return this.categoryService.findcategory()
+  }
+
+
+  @Post('findcat')
+  findcat(@Body() CreateCategoryDto:CreateCategoryDto){
+    return this.categoryService.findcat(CreateCategoryDto)
+  }
+
 
   @Get()
   @ApiQuery({name:'limit',required:false})
