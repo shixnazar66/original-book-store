@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNumber, IsOptional, IsString, IsStrongPassword } from "class-validator";
+import { IsEmail, IsNumber, IsOptional, IsString, IsStrongPassword, isNotEmpty, isString } from "class-validator";
 
 export class CreateAuthDto {
     createQueryBuilder() {
@@ -14,7 +14,7 @@ export class CreateAuthDto {
     email:string
 
     @ApiProperty()
-    @IsString()
+    @IsString() 
     firstname:string
 
     @ApiProperty()

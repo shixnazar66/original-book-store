@@ -87,13 +87,15 @@ export class CategoryService {
   async findcategory(){
     try {
     const find = await this.categoryRepo.find()
-    return find
+    if(find){
+      return find
+    }
     } catch (error) {
       throw error
     }
   }
 
-
+ 
 
 async findcat(createCategoryDto:CreateCategoryDto){
   try {

@@ -23,7 +23,7 @@ export class CreateBookDto {
     @IsOptional()
     @IsString()
     money:string
-
+ 
     @ApiProperty({default:[1,2,3]})
     @IsNumber({maxDecimalPlaces:0},{each:true})
     categoryID:number[]

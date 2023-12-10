@@ -120,5 +120,18 @@ constructor(
       throw error
     }
   }
+ 
+
+  async buy(id:number){
+    try {
+      const find = await this.bookRepo.findOneBy({id})
+      if(!find){
+        throw new BadRequestException('kitob topilmadi')
+      } 
+      return find
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 }

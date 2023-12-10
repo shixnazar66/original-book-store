@@ -20,7 +20,7 @@ export class BookController {
   find(@Body() findBookDto:findBookDto){
     return this.bookService.find(findBookDto)
   }
-
+ 
   @Get()
   @ApiQuery({name:'limit',required:false})
   @ApiQuery({name:'page',required:false})
@@ -31,6 +31,12 @@ export class BookController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.bookService.findOne(+id);
+  }
+
+
+  @Get('buy/:id')
+  buy(@Param('id') id: string) {
+    return this.bookService.buy(+id);
   }
 
   @Patch(':id')

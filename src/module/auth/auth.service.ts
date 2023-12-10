@@ -7,12 +7,14 @@ import { Repository } from 'typeorm';
 import * as jwt from 'jsonwebtoken';
 import { decryptWithAES,encryptWithAES } from 'src/common/utils/hashing-util';
 import { env } from 'src/common/config/env.config';
+import { Saved } from '../saved/entities/saved.entity';
 
 
 @Injectable()
 export class AuthService {
 constructor(
-  @InjectRepository(User) private readonly UserRepo: Repository<User>
+  @InjectRepository(User) private readonly UserRepo: Repository<User>,
+  @InjectRepository(Saved) private readonly savedRepo: Repository<Saved>
 ){}
 
 
@@ -35,7 +37,7 @@ async login(CreateAuthDto: CreateAuthDto) {
     CreateAuthDto.refresh_token = newtoken
     const user = await this.UserRepo.create(CreateAuthDto)
     await this.UserRepo.update(id,(user))
-    return { refreshtoken: newtoken };
+    return { refreshtoken: CreateAuthDto.refresh_token };
   } catch (error) {
     throw error;
   }
@@ -101,4 +103,16 @@ async login(CreateAuthDto: CreateAuthDto) {
     }
   }
 
+
+  async finsaved(id:any){
+    try {
+    const find = await this.savedRepo.findOne({where:{user:id},relations:["book"]})
+    return find
+    } catch (error) {
+      throw error
+    }
+  }
+
+
+  
 }

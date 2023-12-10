@@ -21,6 +21,9 @@ export class Book extends Rootentity{
     @Column({nullable:true})
     money:string
 
+    @Column({nullable:true})
+    pdf:string
+
     @ManyToMany(() => Category, (category) => category.book)
     category:Category[]
 }

@@ -16,10 +16,10 @@ export class User extends Rootentity {
   @Column({ enum: UserRole, type: 'enum', default: UserRole.user })
   role: string;
 
-  @Column()
+  @Column({nullable:true})
   password: string;
 
-  @Column()
+  @Column({nullable:true})
   telegramID:string
 
   @Column({ nullable: true })
