@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, UseGuards } from '@nestjs/common';
 import { CreateSavedDto } from './dto/create-saved.dto';
 import { UpdateSavedDto } from './dto/update-saved.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,6 +9,7 @@ import { Book } from '../book/entities/book.entity';
 import { findAllSaveDto } from './dto/findAll-save.dto';
 import { Pagination } from 'src/common/utils/pagination';
 import { ApiResponse } from 'src/common/http/apiresponse';
+import { AuthGuard } from 'src/common/guards/auth-guard';
 
 @Injectable()
 export class SavedService {

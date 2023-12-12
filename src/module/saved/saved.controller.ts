@@ -11,7 +11,7 @@ export class SavedController {
   constructor(private readonly savedService: SavedService) {}
 
 
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @Post()
   create(@Body() createSavedDto: CreateSavedDto) {
     return this.savedService.create(createSavedDto);

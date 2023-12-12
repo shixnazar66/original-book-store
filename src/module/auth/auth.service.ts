@@ -106,8 +106,16 @@ async login(CreateAuthDto: CreateAuthDto) {
 
   async finsaved(id:any){
     try {
-    const find = await this.savedRepo.findOne({where:{user:id},relations:["book"]})
-    return find
+    const telegramid = await this.UserRepo.findOne({where:{telegramID:id}})
+    if(!telegramid){
+      throw new BadRequestException('telegramid not found')
+    }
+    const ID:any = telegramid.id
+    const find = await this.savedRepo.findOne({where:{user:ID},relations:["book","user"]})
+    if(find === null){
+      throw new BadRequestException('saved not found')
+    } 
+    return find.book
     } catch (error) {
       throw error
     }
