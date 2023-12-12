@@ -20,7 +20,7 @@ export class SavedService {
     @InjectRepository(Book) private readonly bookRepo:Repository<Book>
   ){}
 
-
+ 
   async create(createSavedDto: CreateSavedDto) {
    try {
     const {userid,bookid} = createSavedDto
@@ -28,15 +28,15 @@ export class SavedService {
     const finduser = await this.userRepo.findOneBy({id:userid})
     if(!findbook || !finduser){
       throw new BadRequestException('user or book not found')
-    }
+    } 
     const save = await this.savedRepo.create({book:findbook,user:finduser})
     await this.savedRepo.save(save)
     return 'bingo'
    } catch (error) {
-    throw error
-   }
+    throw error 
+   } 
   }
-
+ 
 
   async findAll(findAllSaveDto:findAllSaveDto) {
     try {

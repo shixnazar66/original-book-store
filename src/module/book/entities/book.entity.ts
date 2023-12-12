@@ -1,7 +1,7 @@
 import { IsNumber, IsString } from "class-validator";
 import { Rootentity } from "src/common/entity/root.entity";
 import { Category } from "src/module/category/entities/category.entity";
-import { Column, Entity, ManyToMany } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany } from "typeorm";
 
 
 @Entity()
@@ -23,7 +23,7 @@ export class Book extends Rootentity{
 
     @Column({nullable:true})
     pdf:string
-
+ 
     @ManyToMany(() => Category, (category) => category.book)
     category:Category[]
 }

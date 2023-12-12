@@ -111,11 +111,12 @@ async login(CreateAuthDto: CreateAuthDto) {
       throw new BadRequestException('telegramid not found')
     }
     const ID:any = telegramid.id
-    const find = await this.savedRepo.findOne({where:{user:ID},relations:["book","user"]})
+    const find = await this.savedRepo.find({where:{user:ID},relations:["book","user"]})
     if(find === null){
       throw new BadRequestException('saved not found')
     } 
-    return find.book
+    const books = find.map((item) => item.book);
+    return books
     } catch (error) {
       throw error
     }

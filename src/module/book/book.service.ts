@@ -110,10 +110,10 @@ constructor(
     try {
       const {bookname} = findBookDto
       const find = await this.bookRepo.findOneBy({bookname:bookname})
-      const id = find.id
       if(!find){
         throw new BadRequestException('kitob topilmadi')
       }
+      const id = find.id
       this.bookRepo.update({id},{viewcount:find.viewcount+1})
       return find
     } catch (error) {

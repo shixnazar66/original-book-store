@@ -101,6 +101,9 @@ async findcat(createCategoryDto:CreateCategoryDto){
   try {
   const {categoryname} = createCategoryDto
   const find = await this.categoryRepo.findOne({where:{categoryname},relations:["book"]})
+  if(!find){
+    throw new BadRequestException('book not saved')
+  }
   return find
   } catch (error) {
     throw error
@@ -110,10 +113,3 @@ async findcat(createCategoryDto:CreateCategoryDto){
 
 
 }
-
-
-// const category = await this.categoryRepo
-//       .createQueryBuilder('category')
-//       .leftJoinAndSelect('category.book', 'book')
-//       .where('category.id = :id', { id })
-//       .getOne();

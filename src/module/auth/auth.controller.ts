@@ -38,7 +38,7 @@ export class AuthController {
   @Get('telegram/:id')
   findtelegramID(@Param('id')id:string){
     return this.authService.findtelegramID(id)
-  }
+  } 
 
 
   @Get('saved/:id')
