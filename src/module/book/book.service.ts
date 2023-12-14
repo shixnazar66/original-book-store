@@ -84,7 +84,8 @@ constructor(
     if(!find){
       throw new BadRequestException(`book ${id} ID not found`)
     }
-    await this.bookRepo.update({id},updateBookDto)
+    const {author,booklanguage,bookname,money,viewcount} = updateBookDto
+    await this.bookRepo.update({id},{author,booklanguage,bookname,money,viewcount})
     return 'bingo'
     } catch (error) {
       throw error

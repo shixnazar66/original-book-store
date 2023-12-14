@@ -9,7 +9,6 @@ import { Book } from '../book/entities/book.entity';
 import { findAllSaveDto } from './dto/findAll-save.dto';
 import { Pagination } from 'src/common/utils/pagination';
 import { ApiResponse } from 'src/common/http/apiresponse';
-import { AuthGuard } from 'src/common/guards/auth-guard';
 
 @Injectable()
 export class SavedService {
@@ -29,6 +28,10 @@ export class SavedService {
     if(!findbook || !finduser){
       throw new BadRequestException('user or book not found')
     } 
+    const find = await this.savedRepo.find({where:{user:finduser,book:findbook}})
+    if(find){
+      return 'siz bu kitobni allaqachon saqlagansiz'
+    }
     const save = await this.savedRepo.create({book:findbook,user:finduser})
     await this.savedRepo.save(save)
     return 'bingo'
