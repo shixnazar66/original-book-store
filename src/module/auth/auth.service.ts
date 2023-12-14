@@ -52,7 +52,7 @@ async login(CreateAuthDto: CreateAuthDto) {
       const name = await this.UserRepo.findOneBy({firstname})
       const emm = await this.UserRepo.findOneBy({email})
       if(name || emm){
-           throw new BadRequestException(`account already registir`)
+      throw new BadRequestException(`account already registir`)
       }
       const user = this.UserRepo.create(CreateAuthDto)
       this.UserRepo.save(user)
@@ -100,7 +100,7 @@ async login(CreateAuthDto: CreateAuthDto) {
       return find
     } catch (error) {
       throw error
-    }
+    } 
   }
 
 

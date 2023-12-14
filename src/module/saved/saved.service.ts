@@ -29,6 +29,7 @@ export class SavedService {
       throw new BadRequestException('user or book not found')
     } 
     const find = await this.savedRepo.find({where:{user:finduser,book:findbook}})
+    // worini zotiw garak
     if(find){
       return 'siz bu kitobni allaqachon saqlagansiz'
     }
