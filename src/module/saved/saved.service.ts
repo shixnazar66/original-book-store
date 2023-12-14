@@ -30,9 +30,9 @@ export class SavedService {
     } 
     const find = await this.savedRepo.find({where:{user:finduser,book:findbook}})
     // worini zotiw garak
-    if(find){
-      return 'siz bu kitobni allaqachon saqlagansiz'
-    }
+    // if(find){
+    //   return 'siz bu kitobni allaqachon saqlagansiz'
+    // }
     const save = await this.savedRepo.create({book:findbook,user:finduser})
     await this.savedRepo.save(save)
     return 'bingo'

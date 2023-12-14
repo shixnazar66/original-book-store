@@ -112,7 +112,7 @@ async login(CreateAuthDto: CreateAuthDto) {
     }
     const ID:any = telegramid.id
     const find = await this.savedRepo.find({where:{user:ID},relations:["book","user"]})
-    if(find === null){
+    if(find.length == 0){
       throw new BadRequestException('saved not found')
     } 
     const books = find.map((item) => item.book);
