@@ -20,7 +20,7 @@ constructor(
 
   async create(createBookDto: CreateBookDto) {
     try {
-      const {bookname,booklanguage,author,categoryID,money} = createBookDto
+      const {bookname,booklanguage,author,categoryID,money,pdf} = createBookDto
       const pusharr = []
       for (let id of categoryID){
       const findcategory = await this.categoryRepo.findOneBy({id})
@@ -34,6 +34,7 @@ constructor(
         booklanguage,
         author,
         money,
+        pdf,
         category:pusharr
       })
       await this.bookRepo.save(end)
@@ -84,8 +85,8 @@ constructor(
     if(!find){
       throw new BadRequestException(`book ${id} ID not found`)
     }
-    const {author,booklanguage,bookname,money,viewcount} = updateBookDto
-    await this.bookRepo.update({id},{author,booklanguage,bookname,money,viewcount})
+    const {author,booklanguage,bookname,money,viewcount,pdf} = updateBookDto
+    await this.bookRepo.update({id},{author,booklanguage,bookname,money,viewcount,pdf})
     return 'bingo'
     } catch (error) {
       throw error

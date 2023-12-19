@@ -24,6 +24,10 @@ export class CreateBookDto {
     @IsString()
     money:string
  
+    @ApiProperty()
+    @IsString()
+    pdf:string
+
     @ApiProperty({default:[1,2,3]})
     @IsNumber({maxDecimalPlaces:0},{each:true})
     categoryID:number[]
