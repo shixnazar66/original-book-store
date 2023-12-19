@@ -28,11 +28,10 @@ export class SavedService {
     if(!findbook || !finduser){
       throw new BadRequestException('user or book not found')
     } 
-    const find = await this.savedRepo.find({where:{user:finduser,book:findbook}})
-    // worini zotiw garak
-    // if(find){
-    //   return 'siz bu kitobni allaqachon saqlagansiz'
-    // }
+    const find = await this.savedRepo.find({where:{user:{id:userid},book:{id:bookid}}})
+    if(find.length != 0){
+      return 'siz bu kitobni allaqachon saqlagansiz'
+    }
     const save = await this.savedRepo.create({book:findbook,user:finduser})
     await this.savedRepo.save(save)
     return 'bingo'
