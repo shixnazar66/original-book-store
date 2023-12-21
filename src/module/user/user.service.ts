@@ -20,6 +20,11 @@ constructor(
 
   async create(createUserDto: CreateUserDto) {
     try {
+      const {email} = createUserDto
+      const findemm = await this.userRepo.findOneBy({email:email})
+      if(findemm){
+        throw new BadRequestException('account already register')
+      }
       createUserDto.password = encryptWithAES(createUserDto.password);
       const user = this.userRepo.create(createUserDto);
       this.userRepo.save(user);
