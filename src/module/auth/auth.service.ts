@@ -21,7 +21,6 @@ constructor(
 async login(CreateAuthDto: CreateAuthDto) {
   try {
     const { password, email, firstname } = CreateAuthDto;
-    CreateAuthDto.password = encryptWithAES(CreateAuthDto.password)
     const emm = await this.UserRepo.findOneBy({ email });
     const namm = await this.UserRepo.findOneBy({ firstname });
     if (!emm || !namm) {
